@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @RestController
-@RibbonClient(name = "say-hello", configuration = SayHelloConfiguration.class)
+@RibbonClient(name = "hello", configuration = SayHelloConfiguration.class)
 public class UserApplication {
 
     @Bean
@@ -27,7 +27,7 @@ public class UserApplication {
 
     @RequestMapping("/hi")
     public String hi(@RequestParam(value="name", defaultValue="Artaban") String name) {
-        String greeting = this.restTemplate.getForObject("http://localhost:8090/greeting", String.class);
+        String greeting = this.restTemplate.getForObject("http://hello/greeting", String.class);
         return String.format("%s, %s!", greeting, name);
     }
 
